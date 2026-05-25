@@ -77,6 +77,12 @@ const protect = async (req, res, next) => {
   }
 };
 
+const optionalProtect = (req, res, next) => {
+  const token = (req.headers.authorization || "").replace(/^Bearer\s+/i, "");
+  if (!token) return next();
+  return protect(req, res, next);
+};
+
 const adminOnly = (req, res, next) => {
   if (req.user?.role !== "admin") {
     return res.status(403).json({ message: "Admin access required" });
@@ -84,4 +90,4 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
-module.exports = { protect, adminOnly };
+module.exports = { protect, optionalProtect, adminOnly };

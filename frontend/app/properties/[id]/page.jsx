@@ -3,22 +3,20 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useFirebaseAuth } from "@/components/FirebaseAuthProvider";
 import MapExperience from "@/components/MapExperience";
 import PropertyGallery from "@/components/PropertyGallery";
-import { API_URL, formatPrice } from "@/lib/api";
+import { apiRequest, formatPrice } from "@/lib/api";
 
 export default function PropertyPage() {
   const params = useParams();
+  const { user } = useFirebaseAuth();
   const [property, setProperty] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_URL}/properties/${params.id}`)
-      .then((response) => {
-        if (!response.ok) throw new Error("This property is no longer available.");
-        return response.json();
-      })
+    apiRequest(`/properties/${params.id}`)
       .then((result) => setProperty(result.property))
       .catch((requestError) => setError(requestError.message))
       .finally(() => setLoading(false));
@@ -74,6 +72,8 @@ export default function PropertyPage() {
             <a className="primary-button link-button full-button" href={`tel:${property.owner.phone}`}>
               Call {property.owner.phone}
             </a>
+          ) : user ? (
+            <p className="contact-unavailable">Owner has not added a contact number yet.</p>
           ) : (
             <Link className="primary-button link-button full-button" href="/login">
               Sign in to connect

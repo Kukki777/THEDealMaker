@@ -76,7 +76,8 @@ const listProperties = async (req, res) => {
 };
 
 const getProperty = async (req, res) => {
-  const property = await Property.findById(req.params.id).populate("owner", "name avatar phone");
+  const ownerFields = req.user ? "name avatar phone" : "name avatar";
+  const property = await Property.findById(req.params.id).populate("owner", ownerFields);
   if (!property || (property.status !== "active" && !req.user)) {
     return res.status(404).json({ message: "Property not found" });
   }
