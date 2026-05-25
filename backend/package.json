@@ -1,0 +1,28 @@
+{
+  "name": "rentsell",
+  "version": "1.0.0",
+  "description": "REST API for the THEDealMaker real-estate platform",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "check": "node --check server.js && find config controllers middleware models routes utils scripts -name '*.js' -exec node --check {} \\;",
+    "make:admin": "node scripts/makeAdmin.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cloudinary": "^2.10.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "firebase-admin": "^13.10.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.2",
+    "multer": "^2.1.1",
+    "razorpay": "^2.9.6",
+    "resend": "^6.12.3"
+  }
+}
