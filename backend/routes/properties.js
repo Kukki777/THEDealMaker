@@ -3,6 +3,7 @@ const {
   listProperties,
   getProperty,
   createProperty,
+  createPropertyUploadSignature,
   updateProperty,
   deleteProperty,
   myProperties,
@@ -15,6 +16,7 @@ const router = express.Router();
 
 router.get("/", listProperties);
 router.get("/mine", protect, myProperties);
+router.post("/upload-signature", protect, requireServiceAccess, createPropertyUploadSignature);
 router.post("/", protect, requireServiceAccess, upload.array("images", 10), createProperty);
 router.put("/:id", protect, upload.array("images", 10), updateProperty);
 router.delete("/:id", protect, deleteProperty);

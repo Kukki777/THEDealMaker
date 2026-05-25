@@ -20,6 +20,47 @@ const initialListing = {
   amenities: "",
 };
 
+async function optimizeGalleryImage(file) {
+  if (!file.type.startsWith("image/") || file.type === "image/gif" || file.size < 1024 * 1024) {
+    return file;
+  }
+
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, 1920 / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    canvas.getContext("2d").drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.8));
+    if (!blob || blob.size >= file.size) return file;
+    return new File([blob], `${file.name.replace(/\.[^.]+$/, "")}.jpg`, { type: "image/jpeg" });
+  } catch {
+    return file;
+  }
+}
+
+async function uploadGalleryImage(file, signedUpload) {
+  const preparedFile = await optimizeGalleryImage(file);
+  const body = new FormData();
+  body.append("file", preparedFile);
+  body.append("api_key", signedUpload.apiKey);
+  body.append("timestamp", String(signedUpload.timestamp));
+  body.append("folder", signedUpload.folder);
+  body.append("signature", signedUpload.signature);
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${encodeURIComponent(signedUpload.cloudName)}/image/upload`,
+    { method: "POST", body }
+  );
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(result.error?.message || "Unable to upload property photographs.");
+  }
+  return { url: result.secure_url, publicId: result.public_id };
+}
+
 export default function ListPropertyPage() {
   return (
     <Suspense fallback={<main className="interior-shell"><div className="empty-state">Preparing your listing...</div></main>}>
@@ -41,6 +82,7 @@ function ListPropertyContent() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [submissionProgress, setSubmissionProgress] = useState("");
   const [access, setAccess] = useState("checking");
   const isPlot = listing.propertyType === "plot";
   const isRental = listing.purpose === "rent";
@@ -79,17 +121,31 @@ function ListPropertyContent() {
     }
     setSubmitting(true);
     setError("");
-    const formData = new FormData();
-    Object.entries(listing).forEach(([key, value]) => formData.append(key, value));
-    images.forEach((image) => formData.append("images", image));
+    setSubmissionProgress(images.length ? `Preparing ${images.length} photographs...` : "Creating your listing...");
 
     try {
-      await apiRequest("/properties", { method: "POST", body: formData });
+      let uploadedImages = [];
+      if (images.length) {
+        const signedUpload = await apiRequest("/properties/upload-signature", { method: "POST" });
+        let completed = 0;
+        uploadedImages = await Promise.all(images.map(async (image) => {
+          const uploaded = await uploadGalleryImage(image, signedUpload);
+          completed += 1;
+          setSubmissionProgress(`Uploaded ${completed} of ${images.length} photographs...`);
+          return uploaded;
+        }));
+        setSubmissionProgress("Saving your listing...");
+      }
+      await apiRequest("/properties", {
+        method: "POST",
+        body: JSON.stringify({ ...listing, uploadedImages }),
+      });
       router.push("/dashboard?created=true");
     } catch (requestError) {
       setError(requestError.message);
     } finally {
       setSubmitting(false);
+      setSubmissionProgress("");
     }
   };
 
@@ -192,7 +248,21 @@ function ListPropertyContent() {
           </label>
           <label className="field wide upload-field">
             <span>{isPlot ? "Site photographs (up to 10)" : "Gallery photographs (up to 10)"}</span>
-            <input type="file" accept="image/*" multiple onChange={(event) => setImages(Array.from(event.target.files || []))} />
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={(event) => {
+                const selected = Array.from(event.target.files || []);
+                if (selected.length > 10) {
+                  setError("Select up to 10 gallery photographs.");
+                  setImages(selected.slice(0, 10));
+                  return;
+                }
+                setError("");
+                setImages(selected);
+              }}
+            />
             <small>
               {images.length
                 ? `${images.length} image${images.length === 1 ? "" : "s"} selected for your gallery.`
@@ -202,9 +272,7 @@ function ListPropertyContent() {
         </div>
         {submitting && (
           <p className="submission-progress">
-            {images.length
-              ? `Uploading ${images.length} photo${images.length === 1 ? "" : "s"} and creating your listing...`
-              : "Creating your listing..."}
+            {submissionProgress}
           </p>
         )}
         {error && <p className="form-error">{error}</p>}

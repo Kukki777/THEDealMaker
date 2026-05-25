@@ -4,6 +4,7 @@ const fs = require("fs/promises");
 const path = require("path");
 
 const uploadsDirectory = path.join(__dirname, "..", "uploads");
+const propertyFolder = "rentsell/properties";
 
 const imageExtension = (mimeType) => {
   const extensions = {
@@ -58,7 +59,7 @@ const uploadImage = (buffer, mimeType) => {
     }
 
     const stream = cloudinary.uploader.upload_stream(
-      { folder: "rentsell/properties", resource_type: "image" },
+      { folder: propertyFolder, resource_type: "image" },
       (error, result) => {
         if (error) {
           reject(error);
@@ -69,6 +70,26 @@ const uploadImage = (buffer, mimeType) => {
     );
     stream.end(buffer);
   });
+};
+
+const createSignedUpload = () => {
+  if (!configureCloudinary()) {
+    const error = new Error("Cloudinary is not configured");
+    error.statusCode = 503;
+    throw error;
+  }
+
+  const timestamp = Math.round(Date.now() / 1000);
+  return {
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    folder: propertyFolder,
+    timestamp,
+    signature: cloudinary.utils.api_sign_request(
+      { folder: propertyFolder, timestamp },
+      process.env.CLOUDINARY_API_SECRET
+    ),
+  };
 };
 
 const deleteImage = async (publicId) => {
@@ -84,4 +105,4 @@ const deleteImage = async (publicId) => {
   }
 };
 
-module.exports = { uploadImage, deleteImage };
+module.exports = { createSignedUpload, uploadImage, deleteImage };

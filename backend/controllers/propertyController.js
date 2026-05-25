@@ -1,5 +1,5 @@
 const Property = require("../models/Property");
-const { uploadImage, deleteImage } = require("../config/cloudinary");
+const { createSignedUpload, uploadImage, deleteImage } = require("../config/cloudinary");
 
 const parseAmenities = (value) => {
   if (Array.isArray(value)) return value;
@@ -23,6 +23,35 @@ const propertyPayload = (body) => {
   });
   if (body.amenities !== undefined) result.amenities = parseAmenities(body.amenities);
   return result;
+};
+
+const uploadedImagesFromBody = (value) => {
+  if (!value) return [];
+  let images;
+  try {
+    images = typeof value === "string" ? JSON.parse(value) : value;
+  } catch {
+    const error = new Error("Uploaded gallery details are invalid");
+    error.statusCode = 400;
+    throw error;
+  }
+  if (!Array.isArray(images) || images.length > 10) {
+    const error = new Error("Upload up to 10 property images");
+    error.statusCode = 400;
+    throw error;
+  }
+  const valid = images.every((image) => (
+    typeof image?.url === "string"
+    && image.url.startsWith("https://res.cloudinary.com/")
+    && typeof image.publicId === "string"
+    && image.publicId.startsWith("rentsell/properties/")
+  ));
+  if (!valid) {
+    const error = new Error("Uploaded gallery details are invalid");
+    error.statusCode = 400;
+    throw error;
+  }
+  return images.map(({ url, publicId }) => ({ url, publicId }));
 };
 
 const listProperties = async (req, res) => {
@@ -55,9 +84,18 @@ const getProperty = async (req, res) => {
 };
 
 const createProperty = async (req, res) => {
-  const images = await Promise.all((req.files || []).map((file) => uploadImage(file.buffer, file.mimetype)));
+  const directImages = uploadedImagesFromBody(req.body.uploadedImages);
+  const fileImages = await Promise.all((req.files || []).map((file) => uploadImage(file.buffer, file.mimetype)));
+  const images = [...directImages, ...fileImages];
+  if (images.length > 10) {
+    return res.status(400).json({ message: "Upload up to 10 property images" });
+  }
   const property = await Property.create({ ...propertyPayload(req.body), images, owner: req.user._id });
   res.status(201).json({ property });
+};
+
+const createPropertyUploadSignature = async (req, res) => {
+  res.json(createSignedUpload());
 };
 
 const findOwnedProperty = async (id, user) => {
@@ -98,4 +136,12 @@ const myProperties = async (req, res) => {
   res.json({ properties });
 };
 
-module.exports = { listProperties, getProperty, createProperty, updateProperty, deleteProperty, myProperties };
+module.exports = {
+  listProperties,
+  getProperty,
+  createProperty,
+  createPropertyUploadSignature,
+  updateProperty,
+  deleteProperty,
+  myProperties,
+};
