@@ -30,7 +30,7 @@ const createServiceAccessOrder = async (req, res) => {
 };
 
 const unlockDemoServiceAccess = async (req, res) => {
-  if (process.env.NODE_ENV === "production" || process.env.SERVICE_ACCESS_DEMO_MODE !== "true") {
+  if (process.env.SERVICE_ACCESS_DEMO_MODE !== "true") {
     return res.status(403).json({ message: "Demo service unlock is unavailable." });
   }
   if (await hasServiceAccess(req.user._id)) {
