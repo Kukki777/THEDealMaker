@@ -155,19 +155,21 @@ p {
   align-items: center;
   background-color: #fff;
   background-image: url("/images/thedealmaker-logo-light.jpeg");
-  background-position: center;
+  background-position: center 0;
   background-repeat: no-repeat;
-  background-size: contain;
-  border-radius: 0;
+  background-size: auto 88px;
+  border: 1px solid rgba(198, 158, 81, 0.22);
+  border-radius: 50%;
+  box-shadow: 0 4px 13px rgba(20, 41, 68, 0.08);
   color: #132139;
   display: inline-flex;
   font-family: var(--font-app-sans);
   font-size: 12px;
   font-weight: 800;
-  height: 52px;
+  height: 55px;
   justify-content: center;
   letter-spacing: 0.07em;
-  width: 196px;
+  width: 55px;
 }
 
 .brand-name {
@@ -2279,9 +2281,10 @@ p {
   }
 
   .brand-mark {
-    background-size: contain;
-    height: 43px;
-    width: 148px;
+    background-position: center 0;
+    background-size: auto 82px;
+    height: 51px;
+    width: 51px;
   }
 
   .brand-name {
