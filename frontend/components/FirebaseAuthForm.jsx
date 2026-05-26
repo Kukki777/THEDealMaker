@@ -98,7 +98,7 @@ export default function FirebaseAuthForm({ mode }) {
         body: JSON.stringify({ challengeId, otp }),
       });
       saveMobileSession(result.token, result.user);
-      router.push(isRegister ? "/list-property" : "/#services");
+      router.push("/#services");
     } catch (verificationError) {
       setError(authMessage(verificationError));
       setWorking(false);
@@ -113,7 +113,7 @@ export default function FirebaseAuthForm({ mode }) {
       const result = await signInWithPopup(getFirebaseAuth(), new GoogleAuthProvider());
       if (!result.user || getMobileSession()?.token) return;
       await apiRequest("/auth/me");
-      router.replace(isRegister ? "/list-property" : "/#services");
+      router.replace("/#services");
     } catch (googleError) {
       setError(authMessage(googleError));
       setWorking(false);
