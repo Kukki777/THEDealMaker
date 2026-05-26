@@ -7,7 +7,7 @@ export default function SiteFooter() {
         <div className="footer-brand footer-brand-panel">
           <Link className="brand" href="/">
             <span aria-hidden="true" className="brand-mark" />
-            <span className="brand-name">THE<span>DealMaker</span></span>
+            <span className="brand-name">THE <span>DEAL MAKER</span></span>
           </Link>
           <p>Premium property discovery for refined houses and plots. Sell, rent, or find your next address with confidence.</p>
           <Link className="footer-contact-link" href="/contact">

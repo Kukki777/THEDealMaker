@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #07101f;
-  --background-alt: #0b172a;
-  --surface: rgba(13, 26, 46, 0.8);
+  --background: #ffffff;
+  --background-alt: #f5f6f8;
+  --surface: #ffffff;
   --surface-bright: #ffffff;
-  --surface-soft: rgba(255, 255, 255, 0.065);
-  --foreground: #f5f3ee;
-  --muted: #a0abbc;
-  --dark-text: #142035;
-  --gold: #d1aa62;
-  --gold-light: #f1d395;
-  --gold-dark: #a47a34;
-  --border: rgba(213, 181, 116, 0.2);
-  --border-light: rgba(255, 255, 255, 0.12);
-  --danger: #f17e82;
-  --success: #49bc8b;
-  --radius: 26px;
-  --shadow: 0 24px 66px rgba(0, 0, 0, 0.28);
-  --font-app-sans: Arial, Helvetica, sans-serif;
-  --font-app-display: Georgia, "Times New Roman", serif;
+  --surface-soft: #f8f8f7;
+  --foreground: #142944;
+  --muted: #667489;
+  --dark-text: #142944;
+  --gold: #c69e51;
+  --gold-light: #c69e51;
+  --gold-dark: #9e7631;
+  --border: rgba(198, 158, 81, 0.28);
+  --border-light: #e4e7ec;
+  --danger: #c8474d;
+  --success: #13845b;
+  --radius: 22px;
+  --shadow: 0 15px 42px rgba(20, 41, 68, 0.08);
+  --font-app-sans: var(--font-poppins), Arial, Helvetica, sans-serif;
+  --font-app-display: var(--font-poppins), Arial, Helvetica, sans-serif;
   --font-app-mono: "SFMono-Regular", Consolas, monospace;
 }
 
@@ -39,9 +39,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at 82% 2%, rgba(209, 170, 98, 0.11), transparent 32%),
-    linear-gradient(145deg, #050c18 0%, #081322 50%, #07101f 100%);
+  background: #ffffff;
   color: var(--foreground);
   font-family: var(--font-app-sans);
   margin: 0;
@@ -80,7 +78,7 @@ p {
 }
 
 .ambient-one {
-  background: rgba(187, 145, 70, 0.14);
+  background: rgba(198, 158, 81, 0.08);
   height: 390px;
   right: -100px;
   top: 40px;
@@ -88,7 +86,7 @@ p {
 }
 
 .ambient-two {
-  background: rgba(50, 93, 150, 0.15);
+  background: rgba(20, 41, 68, 0.04);
   bottom: 10%;
   height: 440px;
   left: -150px;
@@ -109,8 +107,10 @@ p {
 }
 
 .navbar-wrap {
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.92);
   left: 0;
-  padding-top: 18px;
+  padding-top: 14px;
   position: sticky;
   right: 0;
   top: 0;
@@ -120,10 +120,10 @@ p {
 .site-header {
   align-items: center;
   backdrop-filter: blur(22px);
-  background: rgba(8, 17, 31, 0.75);
-  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #edf0f3;
   border-radius: 60px;
-  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 30px rgba(20, 41, 68, 0.065);
   display: flex;
   gap: 38px;
   height: 74px;
@@ -141,7 +141,7 @@ p {
 }
 
 .brand small {
-  color: var(--gold-light);
+  color: var(--muted);
   display: block;
   font-family: var(--font-app-sans);
   font-size: 9px;
@@ -153,20 +153,21 @@ p {
 
 .brand-mark {
   align-items: center;
-  background-color: #111b26;
-  background-image: url("/images/thedealmaker-logo.jpeg");
-  background-position: center -7px;
-  background-size: auto 78px;
+  background-color: #fff;
+  background-image: url("/images/thedealmaker-logo-light.jpeg");
+  background-position: center 1px;
+  background-repeat: no-repeat;
+  background-size: auto 86px;
   border-radius: 50%;
   color: #132139;
   display: inline-flex;
   font-family: var(--font-app-sans);
   font-size: 12px;
   font-weight: 800;
-  height: 43px;
+  height: 47px;
   justify-content: center;
   letter-spacing: 0.07em;
-  width: 43px;
+  width: 47px;
 }
 
 .brand-name {
@@ -177,11 +178,11 @@ p {
 }
 
 .brand-name > span {
-  color: var(--gold-light);
+  color: var(--gold);
 }
 
 .nav-links {
-  color: #bac3d1;
+  color: #526176;
   display: flex;
   font-size: 14px;
   gap: 25px;
@@ -192,7 +193,7 @@ p {
 }
 
 .nav-links a:hover {
-  color: var(--gold-light);
+  color: var(--foreground);
 }
 
 .header-actions {
@@ -220,38 +221,38 @@ p {
 
 .gold-button,
 .primary-button {
-  background: linear-gradient(115deg, var(--gold-light), var(--gold));
-  border: 1px solid var(--gold);
-  color: #111c31;
+  background: #142944;
+  border: 1px solid #142944;
+  color: #ffffff;
 }
 
 .gold-button:hover,
 .primary-button:hover {
-  box-shadow: 0 12px 30px rgba(206, 166, 93, 0.25);
+  box-shadow: 0 12px 26px rgba(20, 41, 68, 0.18);
   transform: translateY(-2px);
 }
 
 .ghost-button,
 .quiet-button {
-  background: rgba(255, 255, 255, 0.035);
+  background: #ffffff;
   border: 1px solid var(--border-light);
   color: var(--foreground);
 }
 
 .ghost-button:hover,
 .quiet-button:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.24);
+  background: #f6f7f8;
+  border-color: #d5dae2;
 }
 
 .outline-gold-button {
-  background: transparent;
+  background: #ffffff;
   border: 1px solid var(--gold);
   color: var(--gold-light);
 }
 
 .outline-gold-button:hover {
-  background: rgba(209, 170, 98, 0.12);
+  background: #faf6ed;
 }
 
 .link-button {
@@ -280,11 +281,11 @@ p {
 }
 
 .sign-out-button:hover {
-  color: var(--gold-light);
+  color: var(--foreground);
 }
 
 .eyebrow {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.24em;
@@ -293,7 +294,7 @@ p {
 }
 
 .glass-panel {
-  backdrop-filter: blur(18px);
+  backdrop-filter: none;
   background: var(--surface);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow);
@@ -304,23 +305,24 @@ p {
   display: grid;
   gap: 54px;
   grid-template-columns: 0.84fr 1fr;
-  min-height: 666px;
-  padding: 58px 0 48px;
+  min-height: 630px;
+  padding: 52px 0 50px;
 }
 
 .hero-content h1 {
   font-family: var(--font-app-display);
   font-size: clamp(55px, 6.3vw, 82px);
-  font-weight: 400;
-  letter-spacing: -0.065em;
-  line-height: 0.96;
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 1;
   margin: 0 0 25px;
 }
 
 .hero-description {
   color: var(--muted);
-  font-size: 18px;
-  line-height: 1.68;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.72;
   margin: 0 0 37px;
   max-width: 475px;
 }
@@ -345,7 +347,7 @@ p {
   display: block;
   font-family: var(--font-app-display);
   font-size: 33px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .hero-metrics span {
@@ -369,7 +371,7 @@ p {
 .mosaic-image {
   background-position: center;
   background-size: cover;
-  border-radius: 25px;
+  border-radius: 21px;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
@@ -381,7 +383,7 @@ p {
 }
 
 .mosaic-image::before {
-  background: linear-gradient(transparent 36%, rgba(3, 9, 20, 0.76));
+  background: linear-gradient(transparent 48%, rgba(9, 20, 35, 0.7));
   content: "";
   inset: 0;
   position: absolute;
@@ -389,6 +391,7 @@ p {
 
 .mosaic-image span,
 .mosaic-image small {
+  color: #ffffff;
   position: relative;
 }
 
@@ -417,7 +420,7 @@ p {
   border-radius: 16px;
   bottom: -20px;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.2);
-  color: var(--dark-text);
+  color: var(--foreground);
   font-size: 13px;
   font-weight: 700;
   left: 26px;
@@ -426,7 +429,8 @@ p {
 }
 
 .market-options {
-  margin: 28px auto 42px;
+  margin: 30px auto 70px;
+  scroll-margin-top: 106px;
 }
 
 .market-grid {
@@ -436,24 +440,25 @@ p {
 }
 
 .market-card {
+  color: var(--foreground);
   border-radius: 21px;
   display: flex;
   flex-direction: column;
-  min-height: 280px;
+  min-height: 245px;
   padding: 20px 20px 22px;
+  text-align: left;
+  width: 100%;
 }
 
 .service-tile {
-  background:
-    linear-gradient(145deg, rgba(209, 170, 98, 0.12), rgba(13, 26, 46, 0.85) 48%),
-    var(--surface);
-  border-color: rgba(209, 170, 98, 0.3);
+  background: #ffffff;
+  border-color: #e2e4e8;
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .service-tile:hover {
-  border-color: rgba(241, 211, 149, 0.62);
-  box-shadow: 0 28px 54px rgba(0, 0, 0, 0.35), 0 0 36px rgba(209, 170, 98, 0.11);
+  border-color: rgba(198, 158, 81, 0.6);
+  box-shadow: 0 18px 38px rgba(20, 41, 68, 0.12);
   transform: translateY(-6px);
 }
 
@@ -465,19 +470,20 @@ p {
 }
 
 .service-icon {
-  background: linear-gradient(135deg, rgba(241, 211, 149, 0.18), rgba(209, 170, 98, 0.06));
-  border: 1px solid rgba(241, 211, 149, 0.4);
+  background: #f7f2e8;
+  border: 1px solid rgba(198, 158, 81, 0.32);
   border-radius: 15px;
-  color: var(--gold-light);
+  color: #142944;
   height: 49px;
   padding: 11px;
   width: 49px;
 }
 
 .access-chip {
-  border: 1px solid rgba(209, 170, 98, 0.28);
+  background: #fcf8f0;
+  border: 1px solid rgba(198, 158, 81, 0.25);
   border-radius: 999px;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -488,7 +494,7 @@ p {
 .market-card h3 {
   font-family: var(--font-app-display);
   font-size: 25px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.045em;
   margin: 0 0 14px;
 }
@@ -504,7 +510,7 @@ p {
 .market-secondary {
   background: transparent;
   border: 0;
-  color: var(--gold-light);
+  color: var(--foreground);
   display: inline-block;
   font-size: 14px;
   font-weight: 700;
@@ -565,7 +571,7 @@ p {
 
 .luxury-search input,
 .luxury-search select {
-  background: rgba(255, 255, 255, 0.04);
+  background: #f7f8fa;
   border: 1px solid var(--border-light);
   border-radius: 12px;
   color: var(--foreground);
@@ -605,7 +611,7 @@ p {
 .membership-banner h2 {
   font-family: var(--font-app-display);
   font-size: clamp(32px, 4vw, 45px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1.15;
   margin: 0;
@@ -663,7 +669,8 @@ p {
 .curated-card {
   background: var(--surface-bright);
   border-radius: 22px;
-  box-shadow: var(--shadow);
+  border: 1px solid #eaedf1;
+  box-shadow: 0 12px 35px rgba(20, 41, 68, 0.065);
   color: var(--dark-text);
   overflow: hidden;
   transform-style: preserve-3d;
@@ -704,7 +711,8 @@ p {
 
 .price-row p {
   font-family: var(--font-app-display);
-  font-size: 28px;
+  font-size: 26px;
+  font-weight: 700;
   margin: 0;
 }
 
@@ -743,7 +751,7 @@ p {
 
 .dark-skeleton {
   animation: pulse 1.35s infinite ease-in-out;
-  background: rgba(255, 255, 255, 0.07);
+  background: #edf0f4;
   border-radius: 22px;
   height: 408px;
 }
@@ -841,7 +849,7 @@ p {
 
 .map-pin {
   backdrop-filter: blur(14px);
-  background: rgba(7, 16, 31, 0.84);
+  background: rgba(255, 255, 255, 0.94);
   border: 1px solid var(--border);
   border-radius: 14px;
   display: flex;
@@ -869,7 +877,7 @@ p {
 }
 
 .map-setup {
-  background: rgba(7, 16, 31, 0.82);
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 999px;
   bottom: 18px;
   color: #b5becb;
@@ -892,8 +900,8 @@ p {
 .membership-banner {
   align-items: center;
   background:
-    linear-gradient(95deg, rgba(12, 24, 43, 0.95), rgba(19, 33, 54, 0.92)),
-    radial-gradient(circle at right, rgba(209, 170, 98, 0.25), transparent 45%);
+    linear-gradient(95deg, #fff, #fbf8f1),
+    radial-gradient(circle at right, rgba(198, 158, 81, 0.2), transparent 45%);
   border: 1px solid var(--border);
   border-radius: 29px;
   display: flex;
@@ -920,7 +928,7 @@ p {
 .dashboard-heading h1 {
   font-family: var(--font-app-display);
   font-size: clamp(41px, 5vw, 54px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.08;
   margin: 0 0 17px;
@@ -971,7 +979,7 @@ p {
 .auth-showcase h2 {
   font-family: var(--font-app-display);
   font-size: 37px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1.16;
   margin: 0 13px 31px;
@@ -1030,7 +1038,7 @@ p {
 .firebase-setup-notice h2 {
   font-family: var(--font-app-display);
   font-size: 35px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 1.16;
   margin: 0 0 18px;
@@ -1046,7 +1054,7 @@ p {
   background: rgba(209, 170, 98, 0.09);
   border: 1px solid var(--border);
   border-radius: 10px;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   display: block;
   font-family: var(--font-app-mono);
   font-size: 12px;
@@ -1056,7 +1064,7 @@ p {
 
 .google-auth-button {
   align-items: center;
-  background: rgba(255, 255, 255, 0.045);
+  background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: 13px;
   color: var(--foreground);
@@ -1072,8 +1080,8 @@ p {
 }
 
 .google-auth-button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.085);
-  border-color: rgba(255, 255, 255, 0.24);
+  background: #f6f7f8;
+  border-color: #d4d9e2;
 }
 
 .google-auth-button:disabled,
@@ -1083,7 +1091,7 @@ p {
 }
 
 .google-mark {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 19px;
   font-weight: 700;
 }
@@ -1119,7 +1127,7 @@ p {
 }
 
 .header-loading {
-  background: rgba(255, 255, 255, 0.08);
+  background: #eef1f4;
   border-radius: 999px;
   display: inline-block;
   height: 43px;
@@ -1129,7 +1137,7 @@ p {
 .auth-card h1 {
   font-family: var(--font-app-display);
   font-size: 41px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.1;
   margin: 0 0 12px;
@@ -1149,7 +1157,7 @@ p {
 }
 
 .field {
-  color: #c2cad6;
+  color: #46556a;
   display: flex;
   flex-direction: column;
   font-size: 13px;
@@ -1160,7 +1168,7 @@ p {
 .field input,
 .field select,
 .field textarea {
-  background: rgba(255, 255, 255, 0.045);
+  background: #f7f8fa;
   border: 1px solid var(--border-light);
   border-radius: 13px;
   color: var(--foreground);
@@ -1187,7 +1195,7 @@ p {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  background: rgba(255, 255, 255, 0.065);
+  background: #ffffff;
   border-color: var(--gold);
 }
 
@@ -1206,22 +1214,22 @@ p {
 }
 
 .form-error {
-  background: rgba(241, 126, 130, 0.13);
-  border: 1px solid rgba(241, 126, 130, 0.35);
-  color: #ffc4c7;
+  background: #fff1f2;
+  border: 1px solid #f3c8cc;
+  color: #a52e36;
 }
 
 .success-banner {
-  background: rgba(73, 188, 139, 0.13);
-  border: 1px solid rgba(73, 188, 139, 0.33);
-  color: #b5f1d8;
+  background: #eefaf5;
+  border: 1px solid #bde5d4;
+  color: #116845;
   margin: 26px 0;
 }
 
 .notice-banner {
-  background: rgba(209, 170, 98, 0.13);
+  background: #fcf8f0;
   border: 1px solid var(--border);
-  color: var(--gold-light);
+  color: var(--gold-dark);
   margin: 0 auto 30px;
   max-width: 560px;
   text-align: center;
@@ -1236,7 +1244,7 @@ p {
 
 .auth-switch a,
 .sign-in-note a {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-weight: 700;
 }
 
@@ -1259,7 +1267,7 @@ p {
 .locked-studio h1 {
   font-family: var(--font-app-display);
   font-size: clamp(38px, 5vw, 54px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.1;
   margin: 0 0 18px;
@@ -1273,10 +1281,10 @@ p {
 
 .dimensional-form {
   background:
-    radial-gradient(circle at 95% 5%, rgba(209, 170, 98, 0.14), transparent 27%),
-    linear-gradient(150deg, rgba(16, 31, 54, 0.95), rgba(7, 15, 29, 0.94));
+    radial-gradient(circle at 95% 5%, rgba(198, 158, 81, 0.1), transparent 27%),
+    #ffffff;
   border-color: rgba(209, 170, 98, 0.3);
-  box-shadow: 0 38px 90px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 62px rgba(20, 41, 68, 0.1);
   padding: 28px 34px 34px;
   transform: rotateX(0.8deg);
 }
@@ -1291,10 +1299,10 @@ p {
 }
 
 .form-spotlight span {
-  background: rgba(209, 170, 98, 0.14);
+  background: #fcf8f0;
   border: 1px solid var(--border);
   border-radius: 999px;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1363,10 +1371,10 @@ p {
 }
 
 .submission-progress {
-  background: rgba(209, 170, 98, 0.1);
+  background: #fcf8f0;
   border: 1px solid rgba(209, 170, 98, 0.3);
   border-radius: 14px;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 14px;
   margin: 25px 0 0;
   padding: 13px 16px;
@@ -1413,7 +1421,7 @@ p {
 }
 
 .stat-grid strong {
-  color: var(--gold-light);
+  color: var(--foreground);
   display: block;
   font-family: var(--font-app-display);
   font-size: 36px;
@@ -1460,18 +1468,18 @@ p {
 }
 
 .status-active {
-  background: rgba(73, 188, 139, 0.17);
-  color: #8fe1ba;
+  background: #eaf8f2;
+  color: #12724e;
 }
 
 .status-pending {
-  background: rgba(209, 170, 98, 0.17);
-  color: var(--gold-light);
+  background: #fcf8f0;
+  color: var(--gold-dark);
 }
 
 .status-rejected {
-  background: rgba(241, 126, 130, 0.16);
-  color: #ffbbc0;
+  background: #fff1f2;
+  color: #ad343c;
 }
 
 .inline-actions {
@@ -1495,15 +1503,15 @@ p {
 }
 
 .danger-button {
-  background: rgba(241, 126, 130, 0.1);
-  border: 1px solid rgba(241, 126, 130, 0.31);
-  color: #ffb0b6;
+  background: #fff1f2;
+  border: 1px solid #f0c6ca;
+  color: #ad343c;
 }
 
 .approve-button {
-  background: rgba(73, 188, 139, 0.12);
-  border: 1px solid rgba(73, 188, 139, 0.32);
-  color: #8fe1ba;
+  background: #eaf8f2;
+  border: 1px solid #c3e8d8;
+  color: #12724e;
 }
 
 .empty-state {
@@ -1524,7 +1532,7 @@ p {
 }
 
 .back-link {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   display: inline-block;
   font-size: 14px;
   font-weight: 600;
@@ -1652,7 +1660,7 @@ p {
 }
 
 .contact-card .price {
-  color: var(--gold-light);
+  color: var(--foreground);
   font-family: var(--font-app-display);
   font-size: 35px;
   margin-bottom: 28px;
@@ -1695,12 +1703,12 @@ p {
 .plan-card h2 {
   font-family: var(--font-app-display);
   font-size: 34px;
-  font-weight: 400;
+  font-weight: 700;
   margin: 0 0 22px;
 }
 
 .plan-price {
-  color: var(--gold-light);
+  color: var(--foreground);
   font-family: var(--font-app-display);
   font-size: 42px;
   margin-bottom: 15px;
@@ -1721,7 +1729,7 @@ p {
 .plan-card ul {
   border-bottom: 1px solid var(--border-light);
   border-top: 1px solid var(--border-light);
-  color: #cad1dc;
+  color: #43536a;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1774,7 +1782,7 @@ p {
 .story-copy h1 {
   font-family: var(--font-app-display);
   font-size: clamp(47px, 5vw, 63px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.06em;
   line-height: 1.05;
   margin: 0 0 25px;
@@ -1815,7 +1823,7 @@ p {
 .contact-option h2 {
   font-family: var(--font-app-display);
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.04em;
   margin-bottom: 13px;
 }
@@ -1838,7 +1846,7 @@ p {
 .contact-copy h1 {
   font-family: var(--font-app-display);
   font-size: clamp(47px, 5vw, 60px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.08;
 }
@@ -1877,8 +1885,8 @@ p {
 
 .access-modal {
   background:
-    radial-gradient(circle at 50% 0, rgba(209, 170, 98, 0.21), transparent 38%),
-    #0c1729;
+    radial-gradient(circle at 50% 0, rgba(198, 158, 81, 0.12), transparent 38%),
+    #ffffff;
   border: 1px solid rgba(209, 170, 98, 0.36);
   border-radius: 29px;
   box-shadow: 0 40px 95px rgba(0, 0, 0, 0.56);
@@ -1893,7 +1901,7 @@ p {
 .access-modal h2 {
   font-family: var(--font-app-display);
   font-size: 38px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.12;
 }
@@ -1904,7 +1912,7 @@ p {
 }
 
 .access-price {
-  background: rgba(209, 170, 98, 0.08);
+  background: #fcf8f0;
   border: 1px solid var(--border);
   border-radius: 18px;
   margin: 28px 0 25px;
@@ -1912,7 +1920,7 @@ p {
 }
 
 .access-price strong {
-  color: var(--gold-light);
+  color: var(--foreground);
   display: block;
   font-family: var(--font-app-display);
   font-size: 46px;
@@ -1934,7 +1942,7 @@ p {
   background: transparent;
   border: 1px dashed rgba(241, 211, 149, 0.5);
   border-radius: 999px;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 14px;
   font-weight: 700;
   height: 48px;
@@ -1942,12 +1950,12 @@ p {
 }
 
 .demo-access-button:hover:not(:disabled) {
-  background: rgba(209, 170, 98, 0.1);
+  background: #fcf8f0;
 }
 
 .modal-close {
   align-items: center;
-  background: rgba(255, 255, 255, 0.055);
+  background: #f5f6f8;
   border: 1px solid var(--border-light);
   border-radius: 999px;
   color: var(--muted);
@@ -1972,7 +1980,7 @@ p {
 .map-page-head h1 {
   font-family: var(--font-app-display);
   font-size: clamp(45px, 5vw, 60px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.08;
   margin: 0;
@@ -1991,7 +1999,7 @@ p {
 }
 
 .nearby-card small {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   display: block;
   font-size: 12px;
   font-weight: 700;
@@ -2001,10 +2009,8 @@ p {
 }
 
 .luxury-footer {
-  background:
-    radial-gradient(circle at 18% 0%, rgba(209, 170, 98, 0.12), transparent 32%),
-    linear-gradient(180deg, rgba(7, 15, 29, 0), rgba(5, 11, 21, 0.8));
-  border-top: 1px solid rgba(209, 170, 98, 0.18);
+  background: #f7f8fa;
+  border-top: 1px solid #e7eaf0;
   margin-top: 34px;
   padding: 64px 0 26px;
 }
@@ -2023,8 +2029,8 @@ p {
 }
 
 .footer-brand-panel {
-  background: rgba(12, 25, 43, 0.62);
-  border: 1px solid rgba(209, 170, 98, 0.18);
+  background: #ffffff;
+  border: 1px solid #e4e8ee;
   border-radius: 25px;
   padding: 29px;
 }
@@ -2040,7 +2046,7 @@ p {
 
 .footer-contact-link {
   align-items: center;
-  background: rgba(209, 170, 98, 0.09);
+  background: #f9f5ec;
   border: 1px solid rgba(209, 170, 98, 0.23);
   border-radius: 15px;
   color: var(--foreground);
@@ -2053,7 +2059,7 @@ p {
 }
 
 .footer-contact-link span {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 11px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -2077,7 +2083,7 @@ p {
 }
 
 .footer-columns strong {
-  color: var(--gold-light);
+  color: var(--foreground);
   font-size: 12px;
   letter-spacing: 0.15em;
   margin-bottom: 9px;
@@ -2098,7 +2104,7 @@ p {
 .footer-bottom {
   align-items: center;
   border-top: 1px solid var(--border-light);
-  color: #778294;
+  color: #6d798a;
   display: flex;
   font-size: 13px;
   justify-content: space-between;
@@ -2127,7 +2133,7 @@ p {
 .legal-hero h1 {
   font-family: var(--font-app-display);
   font-size: clamp(48px, 7vw, 70px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.06em;
   line-height: 1.03;
   margin: 17px 0 19px;
@@ -2140,7 +2146,7 @@ p {
 }
 
 .legal-updated {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-size: 12px;
   letter-spacing: 0.12em;
   margin-top: 25px;
@@ -2148,8 +2154,7 @@ p {
 }
 
 .legal-document {
-  background:
-    linear-gradient(145deg, rgba(15, 29, 50, 0.9), rgba(8, 17, 31, 0.92));
+  background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: 27px;
   box-shadow: var(--shadow);
@@ -2169,7 +2174,7 @@ p {
   color: var(--foreground);
   font-family: var(--font-app-display);
   font-size: 29px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.04em;
   margin: 0 0 15px;
 }
@@ -2186,7 +2191,7 @@ p {
 
 .legal-help {
   align-items: center;
-  background: rgba(209, 170, 98, 0.08);
+  background: #fcf8f0;
   border: 1px solid rgba(209, 170, 98, 0.22);
   border-radius: 23px;
   display: flex;
@@ -2198,7 +2203,7 @@ p {
 .legal-help h2 {
   font-family: var(--font-app-display);
   font-size: 27px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.04em;
   margin: 8px 0 0;
 }
@@ -2253,7 +2258,7 @@ p {
 
   .site-header {
     gap: 12px;
-    height: 65px;
+    height: 62px;
     padding: 0 10px;
   }
 
@@ -2262,8 +2267,9 @@ p {
   }
 
   .brand-mark {
-    height: 39px;
-    width: 39px;
+    background-size: auto 78px;
+    height: 43px;
+    width: 43px;
   }
 
   .brand-name {
@@ -2275,12 +2281,37 @@ p {
   }
 
   .ghost-button {
-    height: 43px;
-    padding: 0 16px;
+    height: 42px;
+    padding: 0 14px;
+  }
+
+  .hero-luxury {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    min-height: 0;
+    padding: 18px 0 38px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-content .eyebrow {
+    display: none;
   }
 
   .hero-content h1 {
-    font-size: clamp(47px, 16vw, 58px);
+    font-size: clamp(34px, 10vw, 42px);
+    letter-spacing: -0.065em;
+    margin-bottom: 15px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 0 auto 28px;
+    max-width: 335px;
   }
 
   .hero-actions,
@@ -2294,27 +2325,75 @@ p {
     flex-direction: column;
   }
 
+  .hero-actions {
+    gap: 10px;
+    margin: 0 auto 30px;
+    max-width: 335px;
+  }
+
+  .hero-actions .link-button {
+    height: 55px;
+    width: 100%;
+  }
+
+  .hero-actions .gold-button {
+    order: 0;
+  }
+
+  .hero-actions .ghost-button {
+    order: 1;
+  }
+
+  .hero-metrics {
+    border-top: 1px solid var(--border-light);
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    max-width: 350px;
+    padding-top: 20px;
+  }
+
+  .hero-metrics strong {
+    font-size: 24px;
+  }
+
+  .hero-metrics span {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+  }
+
   .hero-metrics div:not(:last-child) {
     border: 0;
     padding: 0;
   }
 
   .mosaic-gallery {
-    grid-template-rows: 226px 158px;
-    height: 397px;
+    display: block;
+    height: clamp(330px, 105vw, 420px);
+    margin-left: -16px;
+    order: -1;
+    width: calc(100% + 32px);
   }
 
   .mosaic-1 {
-    grid-column: span 2;
-    grid-row: auto;
+    border-radius: 0 0 25px 25px;
+    height: 100%;
   }
 
-  .mosaic-3 {
+  .mosaic-2,
+  .mosaic-3,
+  .mosaic-4,
+  .mosaic-badge {
+    display: none;
+  }
+
+  .mosaic-1 span,
+  .mosaic-1 small {
     display: none;
   }
 
   .luxury-search,
-  .market-grid,
   .services-grid,
   .luxury-grid,
   .curated-grid,
@@ -2327,6 +2406,83 @@ p {
   .contact-options,
   .concierge-form {
     grid-template-columns: 1fr;
+  }
+
+  .market-options {
+    margin: 10px auto 52px;
+  }
+
+  .section-heading-dark {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .section-heading-dark .eyebrow {
+    margin-bottom: 10px;
+  }
+
+  .section-heading-dark h2 {
+    font-size: 29px;
+    letter-spacing: -0.055em;
+    line-height: 1.18;
+  }
+
+  .market-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .market-card {
+    align-items: center;
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    min-height: 84px;
+    padding: 14px 16px;
+  }
+
+  .service-tile:hover {
+    transform: none;
+  }
+
+  .service-tile-top {
+    grid-row: span 2;
+    margin: 0;
+  }
+
+  .service-icon {
+    background: transparent;
+    border: 0;
+    color: var(--gold-dark);
+    height: 42px;
+    padding: 6px;
+    width: 42px;
+  }
+
+  .access-chip,
+  .market-card p,
+  .market-action {
+    display: none;
+  }
+
+  .market-card h3 {
+    font-size: 18px;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+
+  .residences-section {
+    margin-bottom: 58px;
+  }
+
+  .curated-card > div,
+  .luxury-property-image {
+    height: 215px;
+  }
+
+  .luxury-property-info {
+    padding: 17px 18px 19px;
   }
 
   .form-grid .wide,
@@ -2401,6 +2557,11 @@ p {
 
   .footer-brand {
     max-width: none;
+  }
+
+  .luxury-footer {
+    margin-top: 8px;
+    padding-top: 42px;
   }
 
   .footer-bottom,

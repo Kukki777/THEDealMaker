@@ -161,15 +161,15 @@ export default function Home() {
     <main className="luxury-home">
       <section className="hero-luxury page-container">
         <Reveal className="hero-content">
-          <p className="eyebrow">THEDealMaker property collection</p>
-          <h1>Live beyond the expected.</h1>
+          <p className="eyebrow">THE Deal Maker</p>
+          <h1>Find your new home.</h1>
           <p className="hero-description">
-            An invitation to discover architecture, location, and lifestyle in
-            India&apos;s most coveted residences.
+            Browse homes for sale and rentals, connect with trusted owners,
+            and make your next move with confidence.
           </p>
           <div className="hero-actions">
-            <Link className="gold-button link-button" href="#services">Explore Services</Link>
-            <Link className="ghost-button link-button" href="/contact">Talk to an advisor</Link>
+            <Link className="gold-button link-button" href="#services">Get started</Link>
+            <Link className="ghost-button link-button" href="/contact">Contact us</Link>
           </div>
           <div className="hero-metrics">
             {highlights.map((item) => (
@@ -205,14 +205,16 @@ export default function Home() {
         </div>
         <Stagger className="market-grid">
           {marketOptions.map((option) => (
-            <StaggerItem className="market-card service-tile glass-panel" key={option.title}>
-              <div className="service-tile-top">
-                <ServiceIcon type={option.icon} />
-                <span className="access-chip">Rs. 111 access</span>
-              </div>
-              <h3>{option.title}</h3>
-              <p>{option.text}</p>
-              <button className="market-action" onClick={() => requestService(option)} type="button">{option.action}</button>
+            <StaggerItem key={option.title}>
+              <button className="market-card service-tile glass-panel" onClick={() => requestService(option)} type="button">
+                <div className="service-tile-top">
+                  <ServiceIcon type={option.icon} />
+                  <span className="access-chip">Rs. 111 access</span>
+                </div>
+                <h3>{option.title}</h3>
+                <p>{option.text}</p>
+                <span className="market-action">{option.action}</span>
+              </button>
             </StaggerItem>
           ))}
         </Stagger>

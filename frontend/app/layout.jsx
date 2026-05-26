@@ -2,7 +2,14 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ChatbaseWidget from "@/components/ChatbaseWidget";
 import { FirebaseAuthProvider } from "@/components/FirebaseAuthProvider";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+});
 
 export const metadata = {
   title: "THEDealMaker | Property Sale & Purchase Firm",
@@ -24,7 +31,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body suppressHydrationWarning>
+      <body className={poppins.variable} suppressHydrationWarning>
         <FirebaseAuthProvider>{content}</FirebaseAuthProvider>
       </body>
     </html>
