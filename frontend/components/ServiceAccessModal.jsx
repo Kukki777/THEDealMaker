@@ -69,7 +69,7 @@ export default function ServiceAccessModal({ open, onClose, onUnlocked }) {
 
   const payNow = async () => {
     if (!paymentReady) {
-      setMessage("Razorpay test keys are not configured yet. Add test keys to enable the secure Rs. 111 payment.");
+      setMessage("Razorpay test keys are not configured yet. Add test keys to enable the secure Rs. 251/- payment.");
       return;
     }
     setPaying(true);
@@ -136,7 +136,7 @@ export default function ServiceAccessModal({ open, onClose, onUnlocked }) {
               Pay only once to unlock buying, renting, selling houses and plot services.
             </p>
             <div className="access-price">
-              <strong>Rs. 111</strong>
+              <strong>Rs. 251/-</strong>
               <span>one-time access</span>
             </div>
             {!signedIn && !loading ? (

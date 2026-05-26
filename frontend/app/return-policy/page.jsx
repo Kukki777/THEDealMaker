@@ -4,7 +4,7 @@ const sections = [
   {
     heading: "Digital service access",
     paragraphs: [
-      "THEDealMaker provides online property discovery and listing-access services. The one-time Rs. 111 service access pass is a digital service and is not a physical product that can be returned.",
+      "THEDealMaker provides online property discovery and listing-access services. The one-time Rs. 251/- service access pass is a digital service and is not a physical product that can be returned.",
       "Once access has been activated for your account, it cannot be returned, transferred, exchanged, or resold.",
     ],
   },

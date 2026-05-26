@@ -42,6 +42,7 @@ export default function SiteHeader() {
       <header className="site-header global-shell">
         <Link className="brand" href="/" aria-label="THEDealMaker home">
           <span aria-hidden="true" className="brand-mark" />
+          <span className="brand-name">The<span>DealMaker</span></span>
         </Link>
         <nav className="nav-links" aria-label="Main navigation">
           <Link href="/#services">Services</Link>

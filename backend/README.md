@@ -14,7 +14,7 @@ subscriptions, mobile OTP login, and optional Google sign-in.
    `FIREBASE_PRIVATE_KEY`.
 5. In Razorpay Dashboard, enable Test Mode and add the test `Key ID` and
    `Key Secret` to `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`. The one-time
-   service-access checkout is fixed at Rs. 111 and unlocks every service only
+   service-access checkout is fixed at Rs. 251/- and unlocks every service only
    after verified payment.
 6. Configure Cloudinary values when using gallery uploads.
 7. Run `npm run dev`.

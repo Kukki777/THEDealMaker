@@ -13,7 +13,7 @@ const requireServiceAccess = async (req, res, next) => {
     return next();
   }
   return res.status(402).json({
-    message: "Please complete the one-time Rs. 111 service access payment first.",
+    message: "Please complete the one-time Rs. 251/- service access payment first.",
   });
 };
 

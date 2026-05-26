@@ -158,7 +158,7 @@ function ListPropertyContent() {
       <main className="interior-shell">
         <div className="locked-studio">
           <p className="eyebrow">Service access required</p>
-          <h1>Unlock listing services for Rs. 111 once.</h1>
+          <h1>Unlock listing services for Rs. 251/- once.</h1>
           <p>Pay once on the home page to use all buying, renting, selling and plot services.</p>
           <Link className="primary-button link-button" href="/#services">Unlock services</Link>
         </div>

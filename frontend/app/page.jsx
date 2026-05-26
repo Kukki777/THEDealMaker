@@ -171,6 +171,14 @@ export default function Home() {
             <Link className="gold-button link-button" href="#services">Get started</Link>
             <Link className="ghost-button link-button" href="/contact">Contact us</Link>
           </div>
+          <div className="hero-offer">
+            <p className="eyebrow">Direct owner connection</p>
+            <h2>Save brokerage.</h2>
+            <p>
+              List all your properties for just <strong>Rs. 251/-</strong> and
+              connect directly with your customers.
+            </p>
+          </div>
           <div className="hero-metrics">
             {highlights.map((item) => (
               <div key={item.label}>
@@ -209,7 +217,7 @@ export default function Home() {
               <button className="market-card service-tile glass-panel" onClick={() => requestService(option)} type="button">
                 <div className="service-tile-top">
                   <ServiceIcon type={option.icon} />
-                  <span className="access-chip">Rs. 111 access</span>
+                  <span className="access-chip">Rs. 251/- access</span>
                 </div>
                 <h3>{option.title}</h3>
                 <p>{option.text}</p>

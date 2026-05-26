@@ -4,7 +4,7 @@ const sections = [
   {
     heading: "Service access fee",
     paragraphs: [
-      "The Rs. 111 one-time access fee unlocks THEDealMaker services for the account used at checkout. Because access is supplied digitally upon successful payment, the fee is generally non-refundable once activated.",
+      "The Rs. 251/- one-time access fee unlocks THEDealMaker services for the account used at checkout. Because access is supplied digitally upon successful payment, the fee is generally non-refundable once activated.",
     ],
   },
   {

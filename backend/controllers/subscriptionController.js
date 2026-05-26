@@ -5,7 +5,7 @@ const Subscription = require("../models/Subscription");
 const Transaction = require("../models/Transaction");
 
 const PLANS = {
-  service_access: { amount: 11100, days: null },
+  service_access: { amount: 25100, days: null },
   basic: { amount: 49900, days: 30 },
   pro: { amount: 99900, days: 30 },
   elite: { amount: 199900, days: 30 },
@@ -15,7 +15,7 @@ const serviceAccessStatus = async (req, res) => {
   const unlocked = await hasServiceAccess(req.user._id);
   res.json({
     unlocked,
-    amount: 11100,
+    amount: 25100,
     paymentReady: Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET),
     demoEnabled: process.env.SERVICE_ACCESS_DEMO_MODE === "true",
   });
@@ -40,7 +40,7 @@ const unlockDemoServiceAccess = async (req, res) => {
   await Subscription.create({
     user: req.user._id,
     plan: "service_access",
-    amount: 11100,
+    amount: 25100,
     status: "active",
     razorpayOrderId: `demo_service_access_${req.user._id}_${Date.now()}`,
     startsAt: new Date(),

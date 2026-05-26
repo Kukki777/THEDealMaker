@@ -173,7 +173,7 @@ p {
 }
 
 .brand-name {
-  display: none;
+  display: block;
   font-family: var(--font-app-sans);
   font-size: 19px;
   font-weight: 750;
@@ -334,6 +334,10 @@ p {
   display: flex;
   gap: 13px;
   margin-bottom: 46px;
+}
+
+.hero-offer {
+  display: none;
 }
 
 .hero-metrics {
@@ -2288,7 +2292,9 @@ p {
   }
 
   .brand-name {
-    display: none;
+    display: block;
+    font-size: 14px;
+    letter-spacing: -0.055em;
   }
 
   .mobile-hide {
@@ -2356,6 +2362,43 @@ p {
 
   .hero-actions .ghost-button {
     display: none;
+  }
+
+  .hero-offer {
+    background: linear-gradient(135deg, #fff, #fcf8f0);
+    border: 1px solid rgba(198, 158, 81, 0.2);
+    border-radius: 20px;
+    display: block;
+    margin: 37px auto 0;
+    max-width: 335px;
+    padding: 23px 21px 24px;
+  }
+
+  .hero-offer .eyebrow {
+    color: var(--gold-dark);
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+  }
+
+  .hero-offer h2 {
+    font-size: 25px;
+    font-weight: 750;
+    letter-spacing: -0.065em;
+    margin: 0 0 8px;
+  }
+
+  .hero-offer p:last-child {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .hero-offer strong {
+    color: var(--foreground);
   }
 
   .hero-metrics {
