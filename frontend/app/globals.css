@@ -155,22 +155,23 @@ p {
   align-items: center;
   background-color: #fff;
   background-image: url("/images/thedealmaker-logo-light.jpeg");
-  background-position: center 1px;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: auto 86px;
-  border-radius: 50%;
+  background-size: contain;
+  border-radius: 0;
   color: #132139;
   display: inline-flex;
   font-family: var(--font-app-sans);
   font-size: 12px;
   font-weight: 800;
-  height: 47px;
+  height: 52px;
   justify-content: center;
   letter-spacing: 0.07em;
-  width: 47px;
+  width: 196px;
 }
 
 .brand-name {
+  display: none;
   font-family: var(--font-app-sans);
   font-size: 19px;
   font-weight: 750;
@@ -1120,6 +1121,17 @@ p {
   color: var(--gold-light);
   cursor: pointer;
   font-weight: 600;
+}
+
+.otp-actions {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+
+.subtle-action {
+  color: var(--muted);
 }
 
 .auth-feedback {
@@ -2267,9 +2279,9 @@ p {
   }
 
   .brand-mark {
-    background-size: auto 78px;
+    background-size: contain;
     height: 43px;
-    width: 43px;
+    width: 148px;
   }
 
   .brand-name {
@@ -2493,6 +2505,18 @@ p {
   .auth-card,
   .listing-form {
     padding: 29px 22px;
+  }
+
+  .firebase-auth-card {
+    order: -1;
+  }
+
+  .auth-shell {
+    padding-top: 32px;
+  }
+
+  .auth-showcase {
+    margin-top: 6px;
   }
 
   .dimensional-form {

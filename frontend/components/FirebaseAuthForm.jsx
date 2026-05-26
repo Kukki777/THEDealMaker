@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -39,9 +39,17 @@ export default function FirebaseAuthForm({ mode }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [working, setWorking] = useState(false);
+  const [resendDelay, setResendDelay] = useState(0);
 
-  const requestOtp = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (!resendDelay) return undefined;
+    const timer = window.setInterval(() => {
+      setResendDelay((seconds) => Math.max(0, seconds - 1));
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [resendDelay]);
+
+  const sendOtp = async () => {
     const mobile = indianMobile(phone);
     if (!mobile) {
       setError("Enter a valid 10-digit Indian mobile number.");
@@ -61,12 +69,19 @@ export default function FirebaseAuthForm({ mode }) {
         body: JSON.stringify({ phone: mobile, name: isRegister ? fullName.trim() : "" }),
       });
       setChallengeId(result.challengeId);
+      setOtp("");
+      setResendDelay(30);
       setMessage(result.message || `OTP sent to ${mobile}. Enter the code below.`);
     } catch (requestError) {
       setError(requestError.message);
     } finally {
       setWorking(false);
     }
+  };
+
+  const requestOtp = (event) => {
+    event.preventDefault();
+    void sendOtp();
   };
 
   const verifyOtp = async (event) => {
@@ -148,9 +163,14 @@ export default function FirebaseAuthForm({ mode }) {
           <button className="primary-button full-button" disabled={working} type="submit">
             {working ? "Verifying..." : "Verify and continue"}
           </button>
-          <button className="text-action" disabled={working} onClick={() => { setChallengeId(""); setOtp(""); setMessage(""); }} type="button">
-            Use another number
-          </button>
+          <div className="otp-actions">
+            <button className="text-action" disabled={working || resendDelay > 0} onClick={() => void sendOtp()} type="button">
+              {resendDelay > 0 ? `Resend OTP in ${resendDelay}s` : "Resend OTP"}
+            </button>
+            <button className="text-action subtle-action" disabled={working} onClick={() => { setChallengeId(""); setOtp(""); setMessage(""); setResendDelay(0); }} type="button">
+              Change number
+            </button>
+          </div>
         </form>
       )}
       {message && <p className="success-banner auth-feedback">{message}</p>}
