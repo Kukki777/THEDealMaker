@@ -160,9 +160,7 @@ export default function Home() {
   };
 
   const startJourney = () => {
-    if (!authLoading) {
-      router.push(user ? "/#services" : "/register");
-    }
+    router.push("/register");
   };
 
   return (
@@ -179,14 +177,15 @@ export default function Home() {
             </p>
           </div>
           <div className="hero-actions">
-            <button
-              className="gold-button link-button"
-              disabled={authLoading}
-              onClick={startJourney}
-              type="button"
-            >
-              Get started
-            </button>
+            {!authLoading && !user && (
+              <button
+                className="gold-button link-button"
+                onClick={startJourney}
+                type="button"
+              >
+                Get started
+              </button>
+            )}
             <Link className="ghost-button link-button" href="/contact">Contact us</Link>
           </div>
           <div className="hero-metrics">
