@@ -2339,9 +2339,9 @@ p {
   .hero-luxury {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    min-height: calc(100svh - 76px);
-    padding: 10px 0 34px;
+    gap: 14px;
+    min-height: 0;
+    padding: 10px 0 16px;
   }
 
   .hero-content {
@@ -2396,7 +2396,7 @@ p {
 
   .hero-offer {
     border-radius: 20px;
-    margin: 13px auto 22px;
+    margin: 9px auto 14px;
     max-width: 335px;
     padding: 23px 21px 24px;
   }
