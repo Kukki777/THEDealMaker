@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -16,6 +16,8 @@ const highlights = [
   { value: "18", label: "Prime neighborhoods" },
   { value: "24/7", label: "Concierge support" },
 ];
+
+const MOBILE_HERO_PHOTOS = HOME_PHOTOS.slice(0, 3);
 
 const marketOptions = [
   {
@@ -83,6 +85,7 @@ export default function Home() {
   const [pendingService, setPendingService] = useState(null);
   const [activeService, setActiveService] = useState(null);
   const [accessOpen, setAccessOpen] = useState(false);
+  const [mobileHeroIndex, setMobileHeroIndex] = useState(0);
 
   const loadProperties = async (query = "") => {
     setLoading(true);
@@ -124,6 +127,14 @@ export default function Home() {
     return () => {
       active = false;
     };
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setMobileHeroIndex((current) => (current + 1) % MOBILE_HERO_PHOTOS.length);
+    }, 2000);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   const submitSearch = (event) => {
@@ -210,6 +221,26 @@ export default function Home() {
             </motion.div>
           ))}
           <div className="mosaic-badge">Premium portfolio</div>
+          <div className="mobile-hero-slider" aria-label="Featured homes">
+            <AnimatePresence initial={false} mode="popLayout">
+              <motion.div
+                className="mobile-hero-slide"
+                key={MOBILE_HERO_PHOTOS[mobileHeroIndex].image}
+                style={{
+                  backgroundImage: `url("${MOBILE_HERO_PHOTOS[mobileHeroIndex].image}")`,
+                }}
+                initial={{ opacity: 0, scale: 1.025 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.65, ease: "easeInOut" }}
+              />
+            </AnimatePresence>
+            <div className="mobile-slider-dots" aria-hidden="true">
+              {MOBILE_HERO_PHOTOS.map((home, index) => (
+                <span className={index === mobileHeroIndex ? "active" : ""} key={home.image} />
+              ))}
+            </div>
+          </div>
         </Reveal>
       </section>
 
