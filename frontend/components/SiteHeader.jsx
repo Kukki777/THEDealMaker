@@ -13,10 +13,10 @@ function AccountActions() {
 
   if (loading) return <span className="header-loading" />;
   if (!user) {
-    const isLoginPage = pathname === "/login";
+    const isRegisterPage = pathname === "/register";
     return (
-      <Link className="ghost-button link-button" href={isLoginPage ? "/register" : "/login"}>
-        {isLoginPage ? "Register" : "Sign in"}
+      <Link className="ghost-button link-button" href={isRegisterPage ? "/login" : "/register"}>
+        {isRegisterPage ? "Login" : "Register"}
       </Link>
     );
   }

@@ -178,7 +178,7 @@ export default function FirebaseAuthForm({ mode }) {
       <p className="auth-switch">
         {isRegister ? "Already a member?" : "New to THEDealMaker?"}{" "}
         <Link href={isRegister ? "/login" : "/register"}>
-          {isRegister ? "Sign in" : "Create an account"}
+          {isRegister ? "Login" : "Register"}
         </Link>
       </p>
     </div>
