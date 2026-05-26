@@ -337,7 +337,37 @@ p {
 }
 
 .hero-offer {
-  display: none;
+  background: linear-gradient(135deg, #fff, #fcf8f0);
+  border: 1px solid rgba(198, 158, 81, 0.2);
+  border-radius: 22px;
+  display: block;
+  margin: 0 0 31px;
+  max-width: 475px;
+  padding: 26px 27px;
+}
+
+.hero-offer .eyebrow {
+  color: var(--gold-dark);
+  margin-bottom: 11px;
+}
+
+.hero-offer h2 {
+  font-size: clamp(30px, 3vw, 38px);
+  font-weight: 750;
+  letter-spacing: -0.065em;
+  margin: 0 0 9px;
+}
+
+.hero-offer p:last-child {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.hero-offer strong {
+  color: var(--foreground);
 }
 
 .hero-metrics {
@@ -2365,11 +2395,8 @@ p {
   }
 
   .hero-offer {
-    background: linear-gradient(135deg, #fff, #fcf8f0);
-    border: 1px solid rgba(198, 158, 81, 0.2);
     border-radius: 20px;
-    display: block;
-    margin: 37px auto 0;
+    margin: 13px auto 22px;
     max-width: 335px;
     padding: 23px 21px 24px;
   }

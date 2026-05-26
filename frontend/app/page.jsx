@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PropertyCard from "@/components/PropertyCard";
 import ServiceAccessModal from "@/components/ServiceAccessModal";
+import { useFirebaseAuth } from "@/components/FirebaseAuthProvider";
 import { Reveal, Stagger, StaggerItem } from "@/components/MotionReveal";
 import { API_URL } from "@/lib/api";
 import { HOME_PHOTOS } from "@/lib/showcase";
@@ -70,6 +71,7 @@ function ServiceIcon({ type }) {
 
 export default function Home() {
   const router = useRouter();
+  const { loading: authLoading, user } = useFirebaseAuth();
   const [properties, setProperties] = useState([]);
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState("");
@@ -157,20 +159,17 @@ export default function Home() {
     browseMarket(pendingService);
   };
 
+  const startJourney = () => {
+    if (!authLoading) {
+      router.push(user ? "/#services" : "/register");
+    }
+  };
+
   return (
     <main className="luxury-home">
       <section className="hero-luxury page-container">
         <Reveal className="hero-content">
           <p className="eyebrow">THE Deal Maker</p>
-          <h1>Find your new home.</h1>
-          <p className="hero-description">
-            Browse homes for sale and rentals, connect with trusted owners,
-            and make your next move with confidence.
-          </p>
-          <div className="hero-actions">
-            <Link className="gold-button link-button" href="#services">Get started</Link>
-            <Link className="ghost-button link-button" href="/contact">Contact us</Link>
-          </div>
           <div className="hero-offer">
             <p className="eyebrow">Direct owner connection</p>
             <h2>Save brokerage.</h2>
@@ -178,6 +177,17 @@ export default function Home() {
               List all your properties for just <strong>Rs. 251/-</strong> and
               connect directly with your customers.
             </p>
+          </div>
+          <div className="hero-actions">
+            <button
+              className="gold-button link-button"
+              disabled={authLoading}
+              onClick={startJourney}
+              type="button"
+            >
+              Get started
+            </button>
+            <Link className="ghost-button link-button" href="/contact">Contact us</Link>
           </div>
           <div className="hero-metrics">
             {highlights.map((item) => (
