@@ -143,7 +143,7 @@ export default function FirebaseAuthForm({ mode }) {
           {isRegister && (
             <label className="field">
               <span>Full name</span>
-              <input autoComplete="name" onChange={(event) => setFullName(event.target.value)} placeholder="Priyansh Agrawal" required value={fullName} />
+              <input autoComplete="name" onChange={(event) => setFullName(event.target.value)} placeholder="Enter Your Full Name" required value={fullName} />
             </label>
           )}
           <label className="field">
