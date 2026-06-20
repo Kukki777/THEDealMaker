@@ -148,7 +148,7 @@ export default function FirebaseAuthForm({ mode }) {
           )}
           <label className="field">
             <span>Mobile number</span>
-            <input autoComplete="tel" inputMode="tel" onChange={(event) => setPhone(event.target.value)} placeholder="+91 84334 03333" required value={phone} />
+            <input autoComplete="tel" inputMode="tel" onChange={(event) => setPhone(event.target.value)} placeholder="+91 xxxxxxx333" required value={phone} />
           </label>
           <button className="primary-button full-button" disabled={working} type="submit">
             {working ? "Sending OTP..." : "Send OTP"}

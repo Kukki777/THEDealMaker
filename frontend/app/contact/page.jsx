@@ -58,7 +58,7 @@ export default function ContactPage() {
             </label>
             <label className="field">
               <span>Mobile number</span>
-              <input value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} placeholder="+91 98765 43210" />
+              <input value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} placeholder="+91 XXXXXXXXXX" />
             </label>
             <label className="field wide">
               <span>How may we assist?</span>
